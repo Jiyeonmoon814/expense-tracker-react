@@ -3,6 +3,7 @@ import { Transaction } from './Transaction';
 
 import { GlobalContext } from '../context/GlobalState';
 
+
 export const TransactionList = () => {
     const { transactions } = useContext(GlobalContext);
     //need to loop through a transactions array 
