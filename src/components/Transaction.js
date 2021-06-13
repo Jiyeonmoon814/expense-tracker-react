@@ -1,23 +1,12 @@
-import React, {useState} from 'react'
+import React from 'react'
 
-export const Transaction = () => {
-    const [text, setText] = useState('');
-    const [amount, setAmount] = useState(0);
+export const Transaction = ({transaction}) => {
+    const sign = transaction.amount < 0 ? '-' : '+';
+
     return (
-        <>
-          <h3>Add new transaction</h3>
-          <form>
-            <div className="form-control">
-                <label htmlFor="text">Text</label>
-                <input type="text" value={text} onChange={(e)=>setText(e.target.value)} placeholder="Enter text..." />
-            </div>
-            <div className="form-control">
-                <label for="amount">Amount <br/>
-                (negative - expense, positive - income)</label>
-                <input type="number" id="amount" value={amount} onChange={(e)=>setAmount(e.target.value)} placeholder="Enter amount..."/>
-            </div>
-            <button className="btn">Add transaction</button>
-          </form>  
-        </>
+        <li className={transaction.amount < 0 ? 'minus' : 'plus'}>{transaction.text}
+            <span>{sign}${Math.abs(transaction.amount)}</span>
+            <button className="delete-btn">x</button>
+       </li>
     )
 }
