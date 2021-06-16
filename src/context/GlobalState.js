@@ -25,7 +25,9 @@ export const GlobalProvider = ({ children }) => {
     //Actions 
     function deleteTransaction(id) {
         dispatch({
+            //Define how to change the current state
             type:'DELETE_TRANSACTION',
+            //Required state value 
             payload: id
         })
     }
