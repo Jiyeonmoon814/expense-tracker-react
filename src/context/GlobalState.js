@@ -10,11 +10,16 @@ const initialState = {
     ]
 }
 
-//Create context
+//Create a Context object
+//When React renders a component that subscribes to this Context object
+//it will read the current context value from the closest matching Provider above it in the tree 
 export const GlobalContext = createContext(initialState);
 
 //Provider component
 export const GlobalProvider = ({ children }) => {
+    //An alternative to useState.
+    //Accepts a reducer of type (state, action) => newState 
+    //and returns the current state paired with a dispatch method. 
     const [state, dispatch] = useReducer(AppReducer, initialState);
 
     //Actions 
@@ -31,7 +36,11 @@ export const GlobalProvider = ({ children }) => {
             payload: transaction
         })
     }
-
+    
+    //Context.Provider value = {/*some value*/}
+    //Every Context object comes with a Provider React Component
+    //that allows consuming components to subscribe to context changes 
+    
     return (<GlobalContext.Provider value={{
         transactions:state.transactions,
         deleteTransaction,
