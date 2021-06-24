@@ -38,6 +38,14 @@ export const GlobalProvider = ({ children }) => {
             payload: transaction
         })
     }
+
+    function editTransaction(id,transaction){
+        dispatch({
+            type:'EDIT_TRANSACTION',
+            id:id,
+            payload:transaction
+        })
+    }
     
     //Context.Provider value = {/*some value*/}
     //Every Context object comes with a Provider React Component
@@ -46,7 +54,8 @@ export const GlobalProvider = ({ children }) => {
     return (<GlobalContext.Provider value={{
         transactions:state.transactions,
         deleteTransaction,
-        addTransaction
+        addTransaction,
+        editTransaction
     }}>
         {children}
     </GlobalContext.Provider>)

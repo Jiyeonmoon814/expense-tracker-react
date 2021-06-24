@@ -1,17 +1,26 @@
 export default (state, action) => {
     switch(action.type){
         case 'ADD_TRANSACTION':
-            return{
+            return {
                 ...state,
-                transactions: [action.payload,...state.transactions]
+                transactions : [action.payload,...state.transactions]
             }
         case 'DELETE_TRANSACTION':
-            return{
+            return {
                 ...state,
-                //filtering out anything that has id 
-                transactions:state.transactions.filter(transaction => transaction.id !== action.payload)
+                transactions : state.transactions.filter(
+                    transaction => transaction.id !== action.payload
+                )
             }
-        default:
+        case 'EDIT_TRANSACTION':
+            return {
+                ...state,
+                transactions : state.transactions.map(
+                    transaction => transaction.id === action.id 
+                    ? action.payload : transaction
+                )
+            }
+        default :
             return state;
     }
 }
